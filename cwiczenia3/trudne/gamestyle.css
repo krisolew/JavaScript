@@ -1,0 +1,61 @@
+body
+{
+    padding: 0;
+    margin: 0;
+    background-image: url("square_bg.png");
+}
+
+#container
+{
+    width: 100%;
+    margin-top: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+}
+
+canvas 
+{ 
+    background: #eee;
+    margin-left: 5%;
+    margin-right: 5%;
+    float: left;
+    width: 90%;
+    height: 100%;
+}
+
+#information
+{
+    width: 90%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    text-align: center;
+    padding: 0;
+}
+
+#player1
+{
+    float: left;
+    width: 20%;
+    margin-right: 20%;
+    background-color: cadetblue;
+}
+
+#player2
+{
+    float: left;
+    width: 20%;
+    background-color: cadetblue;
+    margin-left: 20%;
+}
+
+#timer
+{
+    width: 20%;
+    background-color: blue;
+    float: left;
+    
+}

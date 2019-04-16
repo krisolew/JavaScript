@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>Square game</title>
+    <link type="text/css" href="homestyle.css" rel="stylesheet"></link>
+</head>
+<body onload="onePlayerChoosed()">
+    <div id="container">
+        <form id="startData">
+            <div class="checkbox">
+                <input type="checkbox" id="one" onclick="onePlayerChoosed()" checked/>
+                <span>Jeden gracz</span>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="two" onclick="twoPlayersChoosed()" value="cos"/>
+                <span>Dwóch graczy</span>
+            </div>   
+            
+            <input type="text" id="firstNick" placeholder="gracz 1"/>
+            <input type="text" id="secondNick" placeholder="gracz 2"/>
+            <input type="button" onclick="run()" value="Rozpocznij grę!"/>
+        </form>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

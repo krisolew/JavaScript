@@ -1,0 +1,36 @@
+#fliper
+{
+    -webkit-animation: flip-vertical-right 5s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    z-index: 1; 
+    height: 10%;
+    width: 100%; 
+    text-align: center; 
+    opacity: 0.7; 
+    background-color: white;
+    font-size: 15px;    
+    padding-top: 8px;
+}
+
+@-webkit-keyframes flip-vertical-right {
+    0% {
+      -webkit-transform: rotateY(0);
+    }
+    10% {
+      -webkit-transform: rotateY(180deg);
+    }
+    50%{
+        top: 50%;
+    }
+    60%{
+        -webkit-transition: rotateY(-180deg);
+    }
+    100%{
+        top:90%;
+        background-color: darkslategrey;
+        color: white;
+    }
+  }

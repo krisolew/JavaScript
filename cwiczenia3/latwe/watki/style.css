@@ -1,0 +1,13 @@
+.functionLog
+{
+    float: left;
+    width: 33%;
+    margin: 10 pxl;
+}
+
+main
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

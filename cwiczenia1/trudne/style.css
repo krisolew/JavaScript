@@ -1,0 +1,49 @@
+html
+{
+    overflow-x: hidden;
+}
+
+body
+{
+    width: 100%;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+a
+{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;    
+}
+
+a:hover
+{
+    text-decoration: none;   
+    color: goldenrod    ;
+}
+
+footer
+{
+    background-color: #343a40;
+    text-align: center;
+    min-height: 45px;
+    padding: 10px;
+}
+
+figure
+{
+    text-align: center
+}
+
+table
+{
+    text-align: center;
+    border-bottom-color: black;
+}
+
+#description
+{
+    font-size: 25px;
+    text-align: justify;
+}

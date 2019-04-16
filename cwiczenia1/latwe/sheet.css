@@ -1,0 +1,72 @@
+aside 
+{
+    float: left;
+    position: absolute;
+    right: 8px;  
+    width: 50%;
+}
+
+footer
+{
+    margin: 20px 0 0 0;
+    position: absolute;
+    down: 10px;
+    width: 98%;
+    margin-bottom: 10px;    
+} 
+    
+header
+{
+    -webkit-animation: zmiana 3s infinite alternate;
+}    
+      
+main
+{ 
+    margin: 120px 0 0 0;
+    width: 40%;
+    min-width: 390px;
+    clear: both;
+}
+
+nav
+{
+    height: auto;
+    width: 12%;
+    min-width: 110px;
+    float: left;
+}
+
+nav ul
+{ 
+}
+
+nav li
+{  
+}
+
+.azure
+{
+    Background-color: #EFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 0px 5px #000000;
+    padding: 5px;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px)
+{
+    main{
+        color:red;
+    }
+}
+
+@media screen and (max-width:767px)
+{
+    main{
+        color:blue;
+    }
+}
+
+@keyframes zmiana{
+    0% {color: red;}
+    100% {color: blue;}
+}
