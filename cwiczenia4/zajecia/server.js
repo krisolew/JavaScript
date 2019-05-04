@@ -3,64 +3,73 @@ var url = require("url");
 var fs = require("fs");
  
  
-http.createServer(function(request, response) {
- 
+http.createServer(function(request, response) 
+{
     console.log("--------------------------------------")
     console.log("The relative URL of the current request: "+request.url+"\n")
     var url_parts = url.parse(request.url,true);
  
-    if(url_parts.pathname == '/submit') {
+    if(url_parts.pathname == '/submit')
+    {
         var path=url_parts.query['name'];
         var lineAndMode = url_parts.query['mode'];
  
-        var line = parseInt(lineAndMode.split(':')[0]);
-        var mode = parseInt(lineAndMode.split(':')[1]); //mode: 0 to delete, 1 to merge
+        var line = parseInt(lineAndMode.split('|')[0]);
+        var mode = lineAndMode.split('|')[1]; //mode: D to delete, M to merge
  
-        if(mode != 1 && mode != 0){
+        if(mode != "M" && mode != "D"){
             response.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-            response.write("Invalid mode. Mode must be 0 or 1.")
+            response.write("Invalid mode. Mode must be D (delete) or M (merge).");
             response.end();
         }
         else {
-            fs.open(path, 'rs+', (err, fd) => {
+            fs.open(path, 'rs+', (err, fd) => 
+            {
                 if(err){
-                    response.writeHead(404, {"Content-Type": "text/plain; charset=utf-8"});
+                    response.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+                    response.write("No such file");
                     response.end();
-                    throw err;
                 }
                 else {
-                    fs.readFile(path, (err, data) => {
-                        var arr = data.toString().split('\n');
-                        if(arr.length <= line){
+                    fs.readFile(path, (err, data) => 
+                    {
+                        var lines = data.toString().split('\n');
+                        var numOfLines = lines.length - 1;
+                        console.log(numOfLines);
+                        if(numOfLines < line || ( numOfLines == line && mode=="M"))
+                        {
                             response.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-                            response.write("Line number is out of bound.")
+                            response.write("Line number is out of bound.");
                             response.end();
                         }
-                        else {
-                            if(mode == 0){
-                                arr[line] = arr[line].replace(/(\r\n|\n|\r)/gm, " ");
-                                arr[line] = "";
-                            }
-                            else if(mode == 1){
-                                arr[line] = arr[line].replace(/(\r\n|\n|\r)/gm, " ");
-                            }
-                            for(var i of arr){
-                                response.write(i);
-                            }
-                            response.end();
+                        else 
+                        {
+                            if (mode == "D") line--;
+                            if (mode == "M") lines[line-1] += " " + lines[line];
+
+                            var result = "";
+                            for(var i=0; i<numOfLines; i++)
+                                if ( i != parseInt(line) ) result += lines[i] + '\n';
+
+                            fs.writeFile(path, result, () => 
+                            {
+                                response.write(result);
+                                response.end();
+                            });
                         }
                     })
                 }
             })
         }
     }
-    else { //Generating the form
+    else //Generating the form
+    {
         response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
         response.write('<form method="GET" action="/submit">');
         response.write('<label for="name">Enter path </label>');
         response.write('<input name="name">');
         response.write('<br>');
-        response.write('<label for="mode">Enter line number and mode &lt;line&gt; : &lt;mode&gt; </label>');
+        response.write('<label for="mode">Enter line number and mode &lt;line&gt; | &lt;mode&gt; </label>');
         response.write('<input name="mode">');
         response.write('<br>');
         response.write('<input type="submit">');
@@ -68,6 +77,6 @@ http.createServer(function(request, response) {
         response.write('</form>');
         response.end();  
     }
-}).listen(9090);
-console.log("The server was started on port 9090");
+}).listen(8080);
+console.log("The server was started on port 8080");
 console.log("To end the server, press 'CTRL + C'");
