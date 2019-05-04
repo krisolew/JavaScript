@@ -17,7 +17,7 @@ var squares = [numOfSquares];
 var squareSize = 30;
 var speedOfCounting = 1000;
 
-var timeArea = document.getElementById("time");
+var timeArea = document.getElementById("timeArea");
 
 class Player
 {
@@ -33,9 +33,9 @@ class Player
         this.keysPressed = [false, false, false, false];
         this.color = color;
         this.nickArea = nickArea;
-        this.nickArea.innerHTML = this.nick;
-        this.nickArea.style.backgroundColor = this.color;
+        //this.nickArea.innerHTML = this.nick;
         this.pointsArea = pointsArea;
+        this.pointsArea.style.backgroundColor = this.color;
         this.pointsArea.innerHTML = 0;
     }
 }
@@ -254,15 +254,17 @@ function createPlayers()
         var x = ((numOfPlayers-i)*canvas.width)/(numOfPlayers+1);
         var y = canvas.height/2;
         var nick = sessionStorage.getItem("nick"+(i+1));
-        var nickArea = document.getElementById("nick" + i);
-        var pointsArea = document.getElementById("points" + i);
-        if (nickArea == null)
-        {
-            var gameBoard = document.getElementById("gameBoard");
-            gameBoard.innerHTML += "<tr><td id=\"nick" + i + "\">" + nick + "</td><td id=\"points" + i + "\">0</td></tr>";
-            var nickArea = document.getElementById("nick" + i);
-            var pointsArea = document.getElementById("points" + i);
-        }
+        var nickArea = nick;
+        //var nickArea = document.getElementById("player" + i);
+        var pointsArea = document.getElementById("player" + (numOfPlayers-i-1));
+        console.log(pointsArea);
+        // if (nickArea == null)
+        // {
+        //     var gameBoard = document.getElementById("gameBoard");
+        //     gameBoard.innerHTML += "<tr><td id=\"nick" + i + "\">" + nick + "</td><td id=\"points" + i + "\">0</td></tr>";
+        //     var nickArea = document.getElementById("nick" + i);
+        //     var pointsArea = document.getElementById("points" + i);
+        // }
         players[i] = new Player(nick, colors[i], x, y, nickArea, pointsArea);
     }
 }
@@ -271,15 +273,15 @@ function timer()
 {
     time--;
     timeArea.textContent = time;
-    if (time % 60 == 0) 
+    if (time % 20 == 0) 
     {
         for(i=0; i<numOfPlayers; i++)
         {
             players[i].moveValue++;
         }
-            numOfSquares+=5;
-            createSquares(5);
-            speedOfCounting -= 300;
+            numOfSquares+=3;
+            createSquares(3);
+            speedOfCounting -= 70;
             clearInterval(countingInterval);
             countingInterval = setInterval(countDown, speedOfCounting);
     }
@@ -312,6 +314,7 @@ function reset()
     squares.splice(0,numOfSquares); 
     numOfSquares = 10;
     speedOfCounting = 1000;
+    timeArea.textContent = 180;
     startGame();
 }
 
@@ -320,7 +323,10 @@ function gameOver()
     cancelAnimationFrame(drawBallAnimation);
     clearInterval(timeInterval);
     clearInterval(countingInterval);
-    window.alert("koniec gry");
+    var winner;
+    if ( players[0].points > players[1].points ) winner = players[0].nickArea;
+    else winner = players[1].nickArea
+    window.alert("koniec gry! Wygrał gracz: " + winner);
     reset();
 }
 

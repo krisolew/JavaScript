@@ -36,7 +36,7 @@ canvas
     padding: 0;
 }
 
-#player1
+#player0
 {
     float: left;
     width: 20%;
@@ -44,7 +44,7 @@ canvas
     background-color: cadetblue;
 }
 
-#player2
+#player1
 {
     float: left;
     width: 20%;
@@ -52,7 +52,7 @@ canvas
     margin-left: 20%;
 }
 
-#timer
+#timeArea
 {
     width: 20%;
     background-color: blue;
