@@ -1,5 +1,6 @@
 var http = require("http");
 var url = require("url");
+const fs = require('fs');
  
 http.createServer(function(request, response) {
     /*
@@ -16,13 +17,35 @@ http.createServer(function(request, response) {
     var url_parts = url.parse(request.url,true); //parsing (relative) URL
      
     if(url_parts.pathname == '/submit') { //Processing the form content, if the relative URL is '/ submit'
-        var name=url_parts.query['name']; //Read the contents of the field (form) named 'name'
+        var path=url_parts.query['path']; //Read the contents of the field (form) named 'path'
         console.log("Creating a response header")
         response.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});  //Creating an answer header - we inform the browser that the body of the answer will be plain text
         console.log("Creating the body of the response")
-        response.write('Hello '+name); //Place given data (here: 'Hello' text) in the body of the answer
+        response.write('Obecna sciezka: ' + path + '\n');
+
+        try {
+            var status = fs.lstatSync(path, (err, status) => {
+                if (err) console.log("ERROR");
+                if (status.isFile())
+                {
+                    response.write("Plik\n");
+                    var content = fs.readFileSync(path, 'utf8');
+                    response.write(content + '\n');
+                }
+                if (status.isDirectory())
+                {
+                    response.write("Katalog\n");
+                }
+            });  
+        }
+        catch (error)
+        {
+            response.write("Brak pliku o podanej nazwie\n");
+        }
         response.end(); //The end of the response - send it to the browser
         console.log("Sending a response")
+
+        
     }
     else { //Generating the form
         console.log("Creating a response header")
@@ -30,8 +53,8 @@ http.createServer(function(request, response) {
         //and now we put an HTML form in the body of the answer
             console.log("Creating a response body")
         response.write('<form method="GET" action="/submit">');
-        response.write('<label for="name">Give your name</label>');
-        response.write('<input name="name">');
+        response.write('<label for="path">Give path</label>');
+        response.write('<input name="path">');
         response.write('<br>');
         response.write('<input type="submit">');
         response.write('<input type="reset">');
