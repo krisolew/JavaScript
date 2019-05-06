@@ -21,6 +21,15 @@ function main() {
 
     StudentsRepo.getAll()
     .then((data) => console.log(data))
+
+    SubjectRepo.getAll()
+    .then((data) => console.log(data))
+
+    MarksRepo.getAll()
+    .then((data) => console.log(data))
+
+    ParticipationsRepo.getAll()
+    .then((data) => console.log(data))
 }
 
 main();

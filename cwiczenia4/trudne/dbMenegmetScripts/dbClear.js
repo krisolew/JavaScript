@@ -31,6 +31,30 @@ function main() {
             StudentsRepo.delete(data[i].id)
         }
     })
+
+    SubjectRepo.getAll()
+    .then((data) => { 
+        for(var i=0; i<data.length; i++)
+        {
+            StudentsRepo.delete(data[i].id)
+        }
+    })
+
+    MarksRepo.getAll()
+    .then((data) => { 
+        for(var i=0; i<data.length; i++)
+        {
+            StudentsRepo.delete(data[i].id)
+        }
+    })
+
+    ParticipationsRepo.getAll()
+    .then((data) => { 
+        for(var i=0; i<data.length; i++)
+        {
+            StudentsRepo.delete(data[i].id)
+        }
+    })
 }
 
 main();

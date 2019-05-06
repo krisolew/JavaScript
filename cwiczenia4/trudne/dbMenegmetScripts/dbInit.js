@@ -23,17 +23,26 @@ function main() {
     const studentData2 = { name: "Agata Kulig" };
     const studentData3 = { name: "Przemyslaw Worek" };
 
+    const subjectData1 = { name: "Matematyka" };
+    const subjectData2 = { name: "Informatyka" };
+    const subjectData3 = { name: "Fizyka" };
+
     TeachersRepo.createTable()
-        .then(() => TeachersRepo.create(teacherData1.name))
-        .then(() => TeachersRepo.create(teacherData2.name))
-        .then(() => TeachersRepo.create(teacherData3.name))
     StudentsRepo.createTable()
-        .then(() => StudentsRepo.create(studentData1.name))
-        .then(() => StudentsRepo.create(studentData2.name))
-        .then(() => StudentsRepo.create(studentData3.name))
     SubjectRepo.createTable()
     MarksRepo.createTable()
     ParticipationsRepo.createTable()
+    .then(() => TeachersRepo.create(teacherData1.name))
+    .then((data) => {
+        SubjectRepo.create(subjectData1.name, data.id)
+    })
+    .then(() => TeachersRepo.create(teacherData2.name))
+    .then(() => TeachersRepo.create(teacherData3.name))
+
+    .then(() => StudentsRepo.create(studentData1.name))
+    .then(() => StudentsRepo.create(studentData2.name))
+    .then(() => StudentsRepo.create(studentData3.name))
+    
 
 }
 
