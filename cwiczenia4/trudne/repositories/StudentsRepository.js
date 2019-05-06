@@ -14,20 +14,20 @@ class StudentsRepository {
 
     create(name) {
         return this.dao.run(
-          `INSERT INTO tasks (name)
+          `INSERT INTO students (name)
             VALUES (?, ?, ?, ?)`,
             [name])
     }
 
     getById(id) {
         return this.dao.get(
-          `SELECT * FROM projects WHERE id = ?`,
+          `SELECT * FROM students WHERE id = ?`,
           [id]
         )
     }
 
     getAll() {
-        return this.dao.all(`SELECT * FROM projects`)
+        return this.dao.all(`SELECT * FROM students`)
     }
   }
   

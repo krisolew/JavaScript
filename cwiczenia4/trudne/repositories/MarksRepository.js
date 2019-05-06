@@ -23,14 +23,14 @@ class MarksRepository {
 
     create(value, teacherId, studentId, subjectId) {
         return this.dao.run(
-          `INSERT INTO tasks (value, teacherId, studentId, subjectId)
+          `INSERT INTO marks (value, teacherId, studentId, subjectId)
             VALUES (?, ?, ?, ?)`,
             [value, teacherId, studentId, subjectId])
     }
 
     getById(id) {
         return this.dao.get(
-          `SELECT * FROM projects WHERE id = ?`,
+          `SELECT * FROM marks WHERE id = ?`,
           [id]
         )
     }

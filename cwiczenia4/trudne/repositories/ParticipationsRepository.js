@@ -19,14 +19,14 @@ class ParticipationsRepository {
 
     create(studentId, subjectId) {
         return this.dao.run(
-          `INSERT INTO tasks (studentId, subjectId)
+          `INSERT INTO participations (studentId, subjectId)
             VALUES (?, ?, ?, ?)`,
             [studentId, subjectId])
     }
 
     getById(id) {
         return this.dao.get(
-          `SELECT * FROM projects WHERE id = ?`,
+          `SELECT * FROM participations WHERE id = ?`,
           [id]
         )
     }

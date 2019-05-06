@@ -17,14 +17,14 @@ class SubjectsRepository {
 
     create(name, teacherId) {
         return this.dao.run(
-          `INSERT INTO tasks (name, teacherId)
+          `INSERT INTO subjects (name, teacherId)
             VALUES (?, ?, ?, ?)`,
             [name, teacherId])
     }
 
     getById(id) {
         return this.dao.get(
-          `SELECT * FROM projects WHERE id = ?`,
+          `SELECT * FROM subjects WHERE id = ?`,
           [id]
         )
     }
