@@ -20,6 +20,13 @@ class MarksRepository {
         )`
       return this.dao.run(sql)
     }
+
+    create(value, teacherId, studentId, subjectId) {
+        return this.dao.run(
+          `INSERT INTO tasks (value, teacherId, studentId, subjectId)
+            VALUES (?, ?, ?, ?)`,
+            [value, teacherId, studentId, subjectId])
+    }
   }
   
   module.exports = MarksRepository;

@@ -14,6 +14,13 @@ class SubjectsRepository {
         )`
       return this.dao.run(sql)
     }
+
+    create(name, teacherId) {
+        return this.dao.run(
+          `INSERT INTO tasks (name, teacherId)
+            VALUES (?, ?, ?, ?)`,
+            [name, teacherId])
+    }
   }
   
   module.exports = SubjectsRepository;
