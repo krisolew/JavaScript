@@ -23,6 +23,13 @@ class ParticipationsRepository {
             VALUES (?, ?, ?, ?)`,
             [studentId, subjectId])
     }
+
+    getById(id) {
+        return this.dao.get(
+          `SELECT * FROM projects WHERE id = ?`,
+          [id]
+        )
+    }
   }
   
   module.exports = ParticipationsRepository;

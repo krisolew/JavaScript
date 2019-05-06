@@ -27,6 +27,13 @@ class MarksRepository {
             VALUES (?, ?, ?, ?)`,
             [value, teacherId, studentId, subjectId])
     }
+
+    getById(id) {
+        return this.dao.get(
+          `SELECT * FROM projects WHERE id = ?`,
+          [id]
+        )
+    }
   }
   
   module.exports = MarksRepository;

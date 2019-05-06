@@ -18,6 +18,17 @@ class StudentsRepository {
             VALUES (?, ?, ?, ?)`,
             [name])
     }
+
+    getById(id) {
+        return this.dao.get(
+          `SELECT * FROM projects WHERE id = ?`,
+          [id]
+        )
+    }
+
+    getAll() {
+        return this.dao.all(`SELECT * FROM projects`)
+    }
   }
   
   module.exports = StudentsRepository;
