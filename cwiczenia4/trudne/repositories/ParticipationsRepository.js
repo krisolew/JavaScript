@@ -31,6 +31,10 @@ class ParticipationsRepository {
         )
     }
 
+    getAll() {
+      return this.dao.all(`SELECT * FROM participations`)
+    }
+
     delete(id) {
         return this.dao.run(
           `DELETE FROM participations WHERE id = ?`,

@@ -29,6 +29,10 @@ class SubjectsRepository {
         )
     }
 
+    getAll() {
+      return this.dao.all(`SELECT * FROM subjects`)
+    }
+
     delete(id) {
         return this.dao.run(
           `DELETE FROM subjects WHERE id = ?`,

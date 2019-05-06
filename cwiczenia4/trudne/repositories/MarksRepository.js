@@ -35,6 +35,10 @@ class MarksRepository {
         )
     }
 
+    getAll() {
+      return this.dao.all(`SELECT * FROM marks`)
+    }
+
     delete(id) {
       return this.dao.run(
         `DELETE FROM marks WHERE id = ?`,
