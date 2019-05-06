@@ -28,6 +28,13 @@ class SubjectsRepository {
           [id]
         )
     }
+
+    delete(id) {
+        return this.dao.run(
+          `DELETE FROM subjects WHERE id = ?`,
+          [id]
+        )
+      }
   }
   
   module.exports = SubjectsRepository;

@@ -29,6 +29,13 @@ class StudentsRepository {
     getAll() {
         return this.dao.all(`SELECT * FROM students`)
     }
+
+    delete(id) {
+        return this.dao.run(
+          `DELETE FROM students WHERE id = ?`,
+          [id]
+        )
+      }
   }
   
   module.exports = StudentsRepository;

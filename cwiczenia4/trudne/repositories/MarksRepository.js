@@ -34,6 +34,13 @@ class MarksRepository {
           [id]
         )
     }
+
+    delete(id) {
+      return this.dao.run(
+        `DELETE FROM marks WHERE id = ?`,
+        [id]
+      )
+    }
   }
   
   module.exports = MarksRepository;

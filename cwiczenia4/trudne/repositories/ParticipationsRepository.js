@@ -30,6 +30,13 @@ class ParticipationsRepository {
           [id]
         )
     }
+
+    delete(id) {
+        return this.dao.run(
+          `DELETE FROM participations WHERE id = ?`,
+          [id]
+        )
+      }
   }
   
   module.exports = ParticipationsRepository;
