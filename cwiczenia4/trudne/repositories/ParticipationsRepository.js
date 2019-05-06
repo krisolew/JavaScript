@@ -20,7 +20,7 @@ class ParticipationsRepository {
     create(studentId, subjectId) {
         return this.dao.run(
           `INSERT INTO participations (studentId, subjectId)
-            VALUES (?, ?, ?, ?)`,
+            VALUES (?, ?)`,
             [studentId, subjectId])
     }
 

@@ -18,7 +18,7 @@ class SubjectsRepository {
     create(name, teacherId) {
         return this.dao.run(
           `INSERT INTO subjects (name, teacherId)
-            VALUES (?, ?, ?, ?)`,
+            VALUES (?, ?)`,
             [name, teacherId])
     }
 

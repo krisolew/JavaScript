@@ -15,7 +15,7 @@ class StudentsRepository {
     create(name) {
         return this.dao.run(
           `INSERT INTO students (name)
-            VALUES (?, ?, ?, ?)`,
+            VALUES (?)`,
             [name])
     }
 
