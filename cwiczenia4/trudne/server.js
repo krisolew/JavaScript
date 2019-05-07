@@ -43,12 +43,14 @@ http.createServer(function(request, response) {
                 console.log("print");
                 switch(firstParam){
                     case "ls":
-                        console.log("lista studentow")
                         var secondParam = command.split('|')[2];
+                        ParticipationsRepo.getStudentsBySubjectId(secondParam)
+                        .then((data) => console.log(data))
                         break;
                     case "lo":
-                        console.log("lista ocen");
                         var secondParam = command.split('|')[2];
+                        MarksRepo.getMarksByTeacherId(secondParam)
+                        .then((data) => console.log(data))
                         break;
                     case "students":
                         StudentsRepo.getAll()
@@ -65,7 +67,7 @@ http.createServer(function(request, response) {
                         break;
                     case "subjects":
                         SubjectRepo.getAll()
-                        .then((data) => response.write(data))
+                        .then((data) => console.log(data))
                         break;
                     case "participations":
                         ParticipationsRepo.getAll()
@@ -78,19 +80,23 @@ http.createServer(function(request, response) {
                 var secondParam = command.split('|')[2];
                 switch (firstParam){
                     case "students":
-                        console.log("lista ocen");
+                        StudentsRepo.create(secondParam);
                         break;
                     case "teachers":
-                        console.log("lista ocen");
+                        TeachersRepo.create(secondParam);
                         break;
                     case "marks":
-                        console.log("lista ocen");
+                        var thirdParam = command.split('|')[3];
+                        var fourthParam = command.split('|')[4];
+                        MarksRepo.create(secondParam, thirdParam, fourthParam);
                         break;
                     case "subjects":
-                        console.log("lista ocen");
+                        var thirdParam = command.split('|')[3];
+                        SubjectRepo.create(secondParam, thirdParam);
                         break;
                     case "participations":
-                        console.log("lista ocen");
+                        var thirdParam = command.split('|')[3];
+                        ParticipationsRepo.create(secondParam, thirdParam);
                         break;
                 }
                 break;
