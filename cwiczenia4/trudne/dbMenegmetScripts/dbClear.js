@@ -13,14 +13,28 @@ function main() {
     const TeachersRepo = new TeachersRepository(dao);
     const MarksRepo = new MarksRepository(dao);
     const ParticipationsRepo = new ParticipationsRepository(dao);
-    
 
-    
-    TeachersRepo.getAll()
+    MarksRepo.getAll()
     .then((data) => { 
         for(var i=0; i<data.length; i++)
         {
-            TeachersRepo.delete(data[i].id)
+            MarksRepo.delete(data[i].id)
+        }
+    })
+
+    ParticipationsRepo.getAll()
+    .then((data) => { 
+        for(var i=0; i<data.length; i++)
+        {
+            ParticipationsRepo.delete(data[i].id)
+        }
+    })
+
+    SubjectRepo.getAll()
+    .then((data) => { 
+        for(var i=0; i<data.length; i++)
+        {
+            SubjectRepo.delete(data[i].id)
         }
     })
 
@@ -32,29 +46,15 @@ function main() {
         }
     })
 
-    SubjectRepo.getAll()
+    TeachersRepo.getAll()
     .then((data) => { 
         for(var i=0; i<data.length; i++)
         {
-            StudentsRepo.delete(data[i].id)
+            TeachersRepo.delete(data[i].id)
         }
     })
 
-    MarksRepo.getAll()
-    .then((data) => { 
-        for(var i=0; i<data.length; i++)
-        {
-            StudentsRepo.delete(data[i].id)
-        }
-    })
-
-    ParticipationsRepo.getAll()
-    .then((data) => { 
-        for(var i=0; i<data.length; i++)
-        {
-            StudentsRepo.delete(data[i].id)
-        }
-    })
+    .then(() => dao.run(`Drop TABLE teachers`));
 }
 
 main();

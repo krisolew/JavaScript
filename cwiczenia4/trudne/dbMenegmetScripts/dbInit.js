@@ -37,7 +37,13 @@ function main() {
         SubjectRepo.create(subjectData1.name, data.id)
     })
     .then(() => TeachersRepo.create(teacherData2.name))
+    .then((data) => {
+        SubjectRepo.create(subjectData2.name, data.id)
+    })
     .then(() => TeachersRepo.create(teacherData3.name))
+    .then((data) => {
+        SubjectRepo.create(subjectData3.name, data.id)
+    })
 
     .then(() => StudentsRepo.create(studentData1.name))
     .then(() => StudentsRepo.create(studentData2.name))
