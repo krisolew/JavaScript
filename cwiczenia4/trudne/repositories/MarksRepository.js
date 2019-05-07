@@ -36,6 +36,13 @@ class MarksRepository {
       return this.dao.all(`SELECT * FROM marks`)
     }
 
+    getMarksByTeacherId(id){
+      return this.dao.all(
+        `SELECT value FROM marks JOIN subjects on subjects.id = marks.subjectId where subjects.teacherId = ?`,
+        [id]
+      )
+    }
+
     delete(id) {
       return this.dao.run(
         `DELETE FROM marks WHERE id = ?`,

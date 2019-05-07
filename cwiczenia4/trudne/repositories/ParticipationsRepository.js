@@ -35,6 +35,13 @@ class ParticipationsRepository {
       return this.dao.all(`SELECT * FROM participations`)
     }
 
+    getStudentsBySubjectId(id){
+      return this.dao.all(
+        `SELECT students.name FROM participations JOIN students on students.id = participations.studentId where participations.subjectId = ?`,
+        [id]
+      )
+    }
+
     delete(id) {
         return this.dao.run(
           `DELETE FROM participations WHERE id = ?`,
