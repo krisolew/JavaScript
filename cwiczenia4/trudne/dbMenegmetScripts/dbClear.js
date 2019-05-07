@@ -53,8 +53,6 @@ function main() {
             TeachersRepo.delete(data[i].id)
         }
     })
-
-    .then(() => dao.run(`Drop TABLE teachers`));
 }
 
 main();
