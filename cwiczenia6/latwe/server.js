@@ -7,8 +7,14 @@ http.createServer (function (request, response) {
     console.log("--------------------------------------");
     console.log("The relative URL of the current request: " + request.url + "\n");
     var url_parts = url.parse (request.url, true);  // parsing (relative) URL
+    var name; 
     if (url_parts.pathname == '/submit') {  // Processing the form content, if the relative URL is '/ submit'
-      var welcome = 'Hello World (Witaj Świecie)';
+      if (url_parts.query.imie)
+      {
+          name = url_parts.query.imie;
+          console.log(name);
+      }
+      var welcome = 'Witaj ' + name;
       response.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"}); 
       response.write(welcome); // Data (response) that we want to send to a web browser
       response.end(); // Sending the answer
