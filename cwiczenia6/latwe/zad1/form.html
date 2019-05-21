@@ -74,22 +74,27 @@
     /***********************************************/
  
     async function requestFetchAPI() {
-        const myRequest = new Request('/submit', );
+      const myRequest = new Request('/submit', );
 
-        var name = document.getElementById('imie').value;
-        var url = '/submit?imie=' + name;
-        try {
+      var name = document.getElementById('imie').value;
+      var url = '/submit?imie=' + name;
 
-            response = await fetch('/submit', {method: 'POST', body: {'imie': name}});  // Execution of the (asynchronous) query to the web server - a promise is created
-                                                // If the promise is fulfilled, then 'response' has a value
-        if (!response.ok) {                
-            throw Error(response.statusText);
-        }
-        }
-        catch (error) { // if the promise is rejected
-        window.alert('Looks like there was a problem: \n', error);
-        }
-        window.alert(response.text()); //show the Promise object
+      fetch(url)
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(data) {
+        window.alert(data);
+      });
+
+
+      // fetch("/submit", { method: 'POST', body: JSON.stringify({imie: name})})
+      // .then(function(response) {
+      //   return response.text();
+      // })
+      // .then(function(data) {
+      //   window.alert(data);
+      // });
     }
     
     </script>
