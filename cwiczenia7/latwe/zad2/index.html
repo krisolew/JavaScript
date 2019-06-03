@@ -24,24 +24,8 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <script>
-    $(document).ready(function () {
-        $('#elementSPAN').text('456');
-        $('#elementSPAN').css("background-color", "red")
-        $(document).on('click', '#elementSPAN', function ()
-        {
-            console.log($('#elementSPAN').text());
-        });
-        var width = $('#elementSPAN').width()
-        var height = $('#elementSPAN').height()
-        console.log(width + 'x' + height)
-        $('#elementSPAN').animate({width: 250, height: 250},'slow');
-        //alert("The current document is ready for processing");
-    });
-
-    </script>
     <main>
-      <table>
+      <table id="gameTable">
         <tr>
           <td id="cell1"></td>
           <td id="cell2"></td>
