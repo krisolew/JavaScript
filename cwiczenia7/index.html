@@ -30,8 +30,13 @@
         {
             console.log($('#elementSPAN').text());
         });
-      alert("The current document is ready for processing");
+        var width = $('#elementSPAN').width()
+        var height = $('#elementSPAN').height()
+        console.log(width + 'x' + height)
+        $('#elementSPAN').animate({width: 250, height: 250},'slow');
+        //alert("The current document is ready for processing");
     });
+
     </script>
     <main>
       Napis <span id='elementSPAN'>123</span>
