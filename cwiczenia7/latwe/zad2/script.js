@@ -1,10 +1,13 @@
 $(document).ready(function () {
     cells = ['#cell0']
     finished = false
+
     for (var i=1; i<10; i++)
     {
         cells.push('#cell' + i);
     }
+
+    $(document).on('click', '#resetButton', resetGameTable)
 
     $(document).on('click', '#gameTable td', function ()
     {
@@ -15,16 +18,24 @@ $(document).ready(function () {
             $(this).text('O');
             if (checkWin('O'))
             {
-                console.log("win player!");
                 finished = true
-                break;
+                pPoints = $('#pPoints').text()
+                numPPoints = parseInt(pPoints);
+                numPPoints += 1
+                $('#pPoints').text(numPPoints);
+                $('#resetButton').css('visibility', 'visible');
+                return;
             }
 
             computerMove();
             if (checkWin('X'))
             {
-                console.log("win computer");
                 finished = true
+                cPoints = $('#cPoints').text()
+                numCPoints = parseInt(cPoints);
+                numCPoints += 1
+                $('#cPoints').text(numCPoints);
+                $('#resetButton').css('visibility', 'visible');
             }
         }
     });
@@ -54,6 +65,8 @@ $(document).ready(function () {
         {
             $(cells[i]).text('');
         }
+        finished = false
+        $('#resetButton').css('visibility', 'hidden');
     }
 
     function computerMove()
