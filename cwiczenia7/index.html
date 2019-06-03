@@ -24,6 +24,12 @@
   <body>
     <script>
     $(document).ready(function () {
+        $('#elementSPAN').text('456');
+        $('#elementSPAN').css("background-color", "red")
+        $(document).on('click', '#elementSPAN', function ()
+        {
+            console.log($('#elementSPAN').text());
+        });
       alert("The current document is ready for processing");
     });
     </script>
