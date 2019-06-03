@@ -18,13 +18,15 @@
       var name = document.getElementById('imie').value;
       var url = '/submit?imie=' + name;
 
-      // Execution of the (asynchronous) query to the web server
-      //xhr.open('GET', url, true);
-      //xhr.send(null);
-
+      //GET
+      //Execution of the (asynchronous) query to the web server
       xhr.open('GET', url, true);
-      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhr.send('imie=' + name);
+      xhr.send(null);
+
+      //POST
+      // xhr.open('POST', '/submit', true);
+      // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      // xhr.send('imie=' + name);
       // Examples of the use of the above methods - see https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
     }
  
@@ -79,22 +81,23 @@
       var name = document.getElementById('imie').value;
       var url = '/submit?imie=' + name;
 
-      fetch(url)
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(data) {
-        window.alert(data);
-      });
-
-
-      // fetch("/submit", { method: 'POST', body: JSON.stringify({imie: name})})
+      //GET
+      // fetch(url)
       // .then(function(response) {
       //   return response.text();
       // })
       // .then(function(data) {
       //   window.alert(data);
       // });
+
+      //POST
+      fetch(url, { method: 'POST', header: new Headers(), body: JSON.stringify({imie: name})})
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(data) {
+        window.alert(data);
+      });
     }
     
     </script>
