@@ -18,7 +18,7 @@ $(document).ready(function () {
         if($(this).text() == '')
         {
             $(this).text('O');
-            $(this).addClass('nohover');
+            $(this).removeClass('hover');
 
             numOfFreePlaces--;
             if (checkWin('O'))
@@ -76,7 +76,7 @@ $(document).ready(function () {
         for (var i=1; i<10; i++)
         {
             $(cells[i]).text('');
-            $(cells[i]).removeClass('nohover');
+            $(cells[i]).addClass('hover');
         }
         finished = false
         numOfFreePlaces = 9;
@@ -94,6 +94,6 @@ $(document).ready(function () {
                 break;
         }
         $(cells[num]).text('X');
-        $(cells[num]).addClass('nohover');
+        $(cells[num]).removeClass('hover');
     }
 });

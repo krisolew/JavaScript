@@ -1,3 +1,8 @@
+body
+{
+    background-image: url("tic-tac-toe.png")
+}
+
 #container
 {
     position: fixed;
@@ -60,11 +65,6 @@
 .hover:hover
 {
     background-color: gray;
-}
-
-.nohover:hover
-{
-    background-color: white;
 }
 
 
