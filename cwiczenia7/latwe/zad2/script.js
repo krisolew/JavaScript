@@ -1,10 +1,12 @@
 $(document).ready(function () {
     cells = ['#cell0']
     finished = false
+    numOfFreePlaces = 9;
 
     for (var i=1; i<10; i++)
     {
         cells.push('#cell' + i);
+        $(cells[i]).addClass('hover');
     }
 
     $(document).on('click', '#resetButton', resetGameTable)
@@ -16,6 +18,9 @@ $(document).ready(function () {
         if($(this).text() == '')
         {
             $(this).text('O');
+            $(this).addClass('nohover');
+
+            numOfFreePlaces--;
             if (checkWin('O'))
             {
                 finished = true
@@ -28,6 +33,7 @@ $(document).ready(function () {
             }
 
             computerMove();
+            numOfFreePlaces--;
             if (checkWin('X'))
             {
                 finished = true
@@ -35,6 +41,12 @@ $(document).ready(function () {
                 numCPoints = parseInt(cPoints);
                 numCPoints += 1
                 $('#cPoints').text(numCPoints);
+                $('#resetButton').css('visibility', 'visible');
+            }
+
+            if (numOfFreePlaces <= 0)
+            {
+                finished = true
                 $('#resetButton').css('visibility', 'visible');
             }
         }
@@ -64,13 +76,16 @@ $(document).ready(function () {
         for (var i=1; i<10; i++)
         {
             $(cells[i]).text('');
+            $(cells[i]).removeClass('nohover');
         }
         finished = false
+        numOfFreePlaces = 9;
         $('#resetButton').css('visibility', 'hidden');
     }
 
     function computerMove()
     {
+        if (numOfFreePlaces <= 0) return;
         num = 0
         while(true)
         {
@@ -79,5 +94,6 @@ $(document).ready(function () {
                 break;
         }
         $(cells[num]).text('X');
+        $(cells[num]).addClass('nohover');
     }
 });

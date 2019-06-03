@@ -29,9 +29,14 @@
     margin-top: 30px;
     width: 202px;
     height: 125px;
-    background-color: green;
+    background-color: #009933;
     color: white;
     visibility: hidden;
+}
+
+#resetButton:hover
+{
+    background-color: #33cc33;
 }
 
 #gameTable td
@@ -40,6 +45,17 @@
     height: 100px;
     border: 2px solid black;
 }
+
+.hover:hover
+{
+    background-color: gray;
+}
+
+.nohover:hover
+{
+    background-color: white;
+}
+
 
 #pointsTable td
 {
