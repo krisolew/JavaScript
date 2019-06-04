@@ -10,7 +10,6 @@ $(document).ready(function () {
     }
 
     $(document).on('click', '#resetButton', resetGameTable)
-
     $(document).on('click', '#gameTable td', function ()
     {
         if (finished) return;
@@ -19,16 +18,10 @@ $(document).ready(function () {
         {
             $(this).text('O');
             $(this).removeClass('hover');
-
             numOfFreePlaces--;
             if (checkWin('O'))
             {
-                finished = true
-                pPoints = $('#pPoints').text()
-                numPPoints = parseInt(pPoints);
-                numPPoints += 1
-                $('#pPoints').text(numPPoints);
-                $('#resetButton').css('visibility', 'visible');
+                game_over('O');
                 return;
             }
 
@@ -36,12 +29,7 @@ $(document).ready(function () {
             numOfFreePlaces--;
             if (checkWin('X'))
             {
-                finished = true
-                cPoints = $('#cPoints').text()
-                numCPoints = parseInt(cPoints);
-                numCPoints += 1
-                $('#cPoints').text(numCPoints);
-                $('#resetButton').css('visibility', 'visible');
+                game_over('X');
             }
 
             if (numOfFreePlaces <= 0)
@@ -51,6 +39,25 @@ $(document).ready(function () {
             }
         }
     });
+
+    function game_over(sign)
+    {
+        finished = true
+        sign == 'O' ? id = '#pPoints' : id = '#cPoints'
+        console.log(id);
+
+        points = $(id).text()
+        numPoints = parseInt(points);
+        numPoints += 1
+        $(id).text(numPoints);
+
+        for (var i=1; i<10; i++)
+        {
+            $(cells[i]).removeClass('hover');
+        }
+
+        $('#resetButton').css('visibility', 'visible');
+    }
 
     function checkWin(sign)
     {
